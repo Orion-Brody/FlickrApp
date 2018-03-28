@@ -1,34 +1,67 @@
-# import flickrapi 
-
-# api_key = u'03674b2d1d2a403fcdb92551d4115f2f'
-# api_secret = u'89f0e506842b6674'
-
-# flickr = flickrapi.FlickrAPI(api_key)
 
 
-# class Login(username, password):
-# 	print("Enter Username:")
-# 	if 
+# my_number = 100
 
-class Number_Storer(object):
-
-	def  __init__(self, number):
-		self.number = number
-
-#TODO:FOR ALL METHODS IN WRAPPER CLASS: PASS IN AUTHENTICATION KEY!!!!
-	def check_number(self, other_number):
+# def check_number( other_number):
 	
-		if other_number > self.number:
-			print(other_number)
-		else:
-			print(self.number)
+# 	if other_number > my_number:
+# 		print(other_number)
+# 	else:
+# 		print(my_number)
 
-		
+# check_number(101)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import flickrapi 
+
+
+
+
+
+def initialize(api_key, api_secret):
+	
+	return flickrapi.FlickrAPI(api_key) #initialize flickr client instance.
 	
 
-trial = Number_Storer(2341)
-trial.check_number(1000)
+def authenticate(api_key, api_secret, flickr):
+	#todo: 
+	
+
+	auth = flickrapi.Auth() #creates an instance of the Auth class.
+	frob = auth.getFrob() #frob is used for authentication.
+	#login_link = auth.loginLink(permission, frob) commented out because unsure what a "permission" is 
+	return auth.getToken(frob) #token is used for API method calls. 
+
+
+
+api_key = u'03674b2d1d2a403fcdb92551d4115f2f'
+api_secret = u'89f0e506842b6674'
+
+flickr = initialize(api_key, api_secret)
+
+token = authenticate(api_key, api_secret, flickr)
+
+
 
 
 	
