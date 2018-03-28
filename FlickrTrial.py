@@ -1,56 +1,22 @@
-
-
-# my_number = 100
-
-# def check_number( other_number):
-	
-# 	if other_number > my_number:
-# 		print(other_number)
-# 	else:
-# 		print(my_number)
-
-# check_number(101)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import flickrapi 
-
-
-
 
 
 def initialize(api_key, api_secret):
 	
-	return flickrapi.FlickrAPI(api_key) #initialize flickr client instance.
+	return flickrapi.FlickrAPI(api_key, api_secret) #initialize flickr client instance.
 	
 
-def authenticate(api_key, api_secret, flickr):
-	#todo: 
-	
+def authenticate(flickr):
 
-	auth = flickrapi.Auth() #creates an instance of the Auth class.
-	frob = auth.getFrob() #frob is used for authentication.
-	#login_link = auth.loginLink(permission, frob) commented out because unsure what a "permission" is 
-	return auth.getToken(frob) #token is used for API method calls. 
+	# auth = flickrapi.OAuth() #creates an instance of the OAuth class.
+	# frob = auth.getFrob() #frob is used for authentication.
+	# #login_link = auth.loginLink(permission, frob) commented out because unsure what a "permission" is 
+	# return auth.getToken(frob) #token is used for API method calls. 
+
+	flickr.authenticate_via_browser(perms='read')
+
+
+
 
 
 
@@ -59,7 +25,7 @@ api_secret = u'89f0e506842b6674'
 
 flickr = initialize(api_key, api_secret)
 
-token = authenticate(api_key, api_secret, flickr)
+authenticate(flickr)
 
 
 
